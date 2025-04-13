@@ -1,30 +1,113 @@
   
   CreazioneCampo();
   const cell =document.querySelectorAll(".cell");
+  const messaggio = document.getElementById("messaggio");
+  let turno = "X";
+  let gioco = true;
   
-  for(let i = 0; i < 9; i++){
-    console.log("for ok");
-    cell[i].addEventListener("click", function e(){
-      Selezione()
-    });
-    
-   // document.getElementById(i).addEventListener("click", Selezione());
-  }
+    for(let i = 0; i < 9; i++){
+      console.log("for");
+      
+      cell[i].addEventListener("click", function e(){
+        console.log("ok");
+        Selezione(cell[i],cell,messaggio)
+        console.log(cell[i].textContent);
+      });
+      
+      
+     
+    }
+  
+  
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   //funzione per creare il campo di gioco
   function CreazioneCampo() {
 
     const board = document.getElementById("board");
     for(let i = 0; i< 9; i++){
       board.innerHTML += `<div class="cell col-4  border d-flex align-items-center justify-content-center" id="${i}"></div>`
+
   }
   
   }
   
-  function Selezione(){
+  //funzione per selezionare una cella
+  function Selezione(cell,celle, messaggio){
     console.log("E' stata selezionata una cella");
+    if(cell.textContent == ""){
+       if(turno == "X"){
+         cell.textContent = "X";
+         turno = "O";
+       } else {
+        cell.textContent = "O";
+        turno = "X";
+        
+       }
+    }
+    Pareggio(celle,messaggio);
+
   }
+
+  function Pareggio(cell, messaggio){
+    let contatore = 0;
+    for(let i = 0; i < 9; i++){
+      if(cell[i].textContent != ""){
+        contatore ++;
+      }
+     
+    }
+    if(contatore == 9){
+      messaggio.textContent = "C'è stato un pareggio!";
+      turno = "X";
+      gioco = false;
+    }
+   
+  }
+
+
+
+
+
+
    //funzione che chiede al giocatore di riempire la casella al click a turni
+  
+
    //determinare le combo vincenti in modo dinamico
    const winningCombos = [
     [0,1,2], [3,4,5], [6,7,8], // righe
