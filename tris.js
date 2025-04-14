@@ -1,22 +1,9 @@
+
+let turno = "X";
+let gioco = true;
+const bottone = document.getElementById("bottone");
+bottone.addEventListener("click", function e() {inizioGioco()});
   
-  CreazioneCampo();
-  const cell =document.querySelectorAll(".cell");
-  const messaggio = document.getElementById("messaggio");
-  let turno = "X";
-  let gioco = true;
-  
-    for(let i = 0; i < 9; i++){
-      console.log("for");
-      
-      cell[i].addEventListener("click", function e(){
-        console.log("ok");
-        Selezione(cell[i],cell,messaggio)
-        console.log(cell[i].textContent);
-      });
-      
-      
-     
-    }
   
   
  
@@ -60,8 +47,10 @@
   function CreazioneCampo() {
 
     const board = document.getElementById("board");
+    board.innerHTML = " ";
     for(let i = 0; i< 9; i++){
       board.innerHTML += `<div class="cell col-4  border d-flex align-items-center justify-content-center" id="${i}"></div>`
+
 
   }
   
@@ -84,6 +73,7 @@
 
   }
 
+  // funzione per determinare un pareggio
   function Pareggio(cell, messaggio){
     let contatore = 0;
     for(let i = 0; i < 9; i++){
@@ -100,12 +90,36 @@
    
   }
 
+  function inizioGioco(){
+    console.log("entro nel metodo");
+    CreazioneCampo();
+  const cell =document.querySelectorAll(".cell");
+  const messaggio = document.getElementById("messaggio");
+  turno = "X";
+  gioco = true;
+  
+  
+    for(let i = 0; i < 9; i++){
+      console.log("for");
+      
+      cell[i].addEventListener("click", function e(){
+        console.log("ok");
+        Selezione(cell[i],cell,messaggio)
+        console.log(cell[i].textContent);
+      });
+      
+      
+     
+    }
+  }
+//funzione che determina la vittoria del gioco
+//metter un pulsante per il reset
 
 
 
 
 
-   //funzione che chiede al giocatore di riempire la casella al click a turni
+  
   
 
    //determinare le combo vincenti in modo dinamico
