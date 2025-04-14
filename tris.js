@@ -1,8 +1,11 @@
 
 let turno = "X";
 let gioco = true;
+
 const bottone = document.getElementById("bottone");
-bottone.addEventListener("click", function e() {inizioGioco()});
+bottone.addEventListener("click", function e() {
+  inizioGioco()
+});
   
   
   
@@ -57,15 +60,23 @@ bottone.addEventListener("click", function e() {inizioGioco()});
   }
   
   //funzione per selezionare una cella
-  function Selezione(cell,celle, messaggio){
+  function Selezione(cell,celle, messaggio, count){
     console.log("E' stata selezionata una cella");
     if(cell.textContent == ""){
        if(turno == "X"){
          cell.textContent = "X";
          turno = "O";
+         console.log(count);
+         vittoriaGioco(cell,count)
+        
+         console.log(count);
        } else {
         cell.textContent = "O";
         turno = "X";
+        console.log(count);
+        vittoriaGioco(cell,count)
+       
+        console.log(count);
         
        }
     }
@@ -91,29 +102,47 @@ bottone.addEventListener("click", function e() {inizioGioco()});
   }
 
   function inizioGioco(){
+
     console.log("entro nel metodo");
     CreazioneCampo();
   const cell =document.querySelectorAll(".cell");
   const messaggio = document.getElementById("messaggio");
   turno = "X";
   gioco = true;
-  
+  let count= 0;
   
     for(let i = 0; i < 9; i++){
-      console.log("for");
+      
       
       cell[i].addEventListener("click", function e(){
-        console.log("ok");
-        Selezione(cell[i],cell,messaggio)
+        
+        Selezione(cell[i],cell,messaggio,count);
+        count+= 1;
+        console.log(count);
         console.log(cell[i].textContent);
       });
       
       
      
     }
+    console.log(count);
   }
 //funzione che determina la vittoria del gioco
-//metter un pulsante per il reset
+
+//dal quarto turno in poi controllare le posizioni della X o della O
+//vedere in che posizione si trova e controllare se quella posizione si trova nell'array delle 
+//combinazioni vincenti e quante combinazioni ci possono essere con quella posizione
+//controllare se nelle altre due posizioni ci sono gli stessi simboli
+function vittoriaGioco(cell,count) {
+  console.log(cell);
+  console.log(count);
+  if(count >= 4){
+      cell.id;
+      console.log(cell.id);
+      
+  }
+
+}
 
 
 
